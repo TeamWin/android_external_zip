@@ -79,6 +79,7 @@ ZCONST char * far cryptnote[] = {
 };
 
 ZCONST char * far swlicense[] = {
+#ifndef __BIONIC__
 "Copyright (c) 1990-2008 Info-ZIP.  All rights reserved.",
 "",
 "For the purposes of this copyright and license, \"Info-ZIP\" is defined as",
@@ -133,6 +134,11 @@ ZCONST char * far swlicense[] = {
 "    4. Info-ZIP retains the right to use the names \"Info-ZIP,\" \"Zip,\" \"UnZip,\"",
 "       \"UnZipSFX,\" \"WiZ,\" \"Pocket UnZip,\" \"Pocket Zip,\" and \"MacZip\" for its",
 "       own source and binary releases."
+#else
+"Copyright (c) 1990-2008 Info-ZIP.  All rights reserved.",
+"",
+"Check license at ftp://ftp.info-zip.org/pub/infozip/license.html",
+#endif
 };
 #endif /* DEFCPYRT */
 #endif /* !WINDLL && !IZ_VERSION_SYMBOLS_ONLY */

@@ -8,7 +8,11 @@
   If, for some reason, all these files are missing, the Info-ZIP license
   also may be found at:  ftp://ftp.info-zip.org/pub/infozip/license.html
 */
+#ifndef __BIONIC__
 #include "zip.h"
+#else
+#include "../zip.h"
+#endif
 
 #ifndef UTIL    /* the companion #endif is a bit of ways down ... */
 

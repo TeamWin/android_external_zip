@@ -588,7 +588,9 @@ local void help()
 #  else
 "  -h   show this help               -n   don't compress these suffixes"
 #  endif
+#ifndef __BIONIC__
 ," -h2  show more help",
+#endif
 "  Macintosh specific:",
 "  -jj  record Fullpath (+ Volname)  -N store finder-comments as comments",
 "  -df  zip only datafork of a file  -S include finder invisible/system files"
@@ -667,7 +669,9 @@ local void help()
 #ifdef RISCOS
 ,"  -h2  show more help               -I   don't scan thru Image files"
 #else
+#ifndef __BIONIC__
 ,"  -h2  show more help"
+#endif
 #endif
 #endif /* ?MACOS */
 #ifdef VMS
@@ -1028,7 +1032,7 @@ local void help_extended()
 
   for (i = 0; i < sizeof(text)/sizeof(char *); i++)
   {
-    printf(text[i]);
+    printf("%s", text[i]);
     putchar('\n');
   }
 #ifdef DOS
@@ -1225,7 +1229,7 @@ local void version_info()
             CR_MAJORVER, CR_MINORVER, CR_BETA_VER, CR_VERSION_DATE);
   for (i = 0; i < sizeof(cryptnote)/sizeof(char *); i++)
   {
-    printf(cryptnote[i]);
+    printf("%s", cryptnote[i]);
     putchar('\n');
   }
   ++i;  /* crypt support means there IS at least one compilation option */
@@ -2010,7 +2014,9 @@ struct option_struct far options[] = {
     {"h",  "help",        o_NO_VALUE,       o_NOT_NEGATABLE, 'h',  "help"},
     {"H",  "",            o_NO_VALUE,       o_NOT_NEGATABLE, 'h',  "help"},
     {"?",  "",            o_NO_VALUE,       o_NOT_NEGATABLE, 'h',  "help"},
+#ifndef __BIONIC__
     {"h2", "more-help",   o_NO_VALUE,       o_NOT_NEGATABLE, o_h2, "extended help"},
+#endif
 #endif /* !WINDLL */
     {"i",  "include",     o_VALUE_LIST,     o_NOT_NEGATABLE, 'i',  "include only files matching patterns"},
 #if defined(VMS) || defined(WIN32)
@@ -2829,9 +2835,11 @@ char **argv;            /* command line tokens */
 #endif /* !WINDLL */
 
 #ifndef WINDLL
+#ifndef __BIONIC__
         case o_h2:  /* Extended Help */
           help_extended();
           RETURN(finish(ZE_OK));
+#endif
 #endif /* !WINDLL */
 
         /* -i is with -x */

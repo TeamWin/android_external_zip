@@ -1,0 +1,16 @@
+Zip on Android
+
+Source: http://www.info-zip.org/pub/infozip/UnZip.html
+
+The Android port of Zip fixed compilation errors and reduce the help and license
+text sizes. They are immortalized in Android.patch to ease future upgraded.
+
+This file can be regenerated using:
+
+diff -crB orig src > Android.patch
+
+
+Patch the source with the follow command:
+
+patch -p0 < Android.patch
+

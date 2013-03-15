@@ -1,0 +1,132 @@
+diff -crB orig/revision.h src/revision.h
+*** orig/revision.h	2008-07-05 13:24:56.000000000 +0200
+--- src/revision.h	2013-03-15 21:42:21.595312000 +0100
+***************
+*** 79,84 ****
+--- 79,85 ----
+  };
+  
+  ZCONST char * far swlicense[] = {
++ #ifndef __BIONIC__
+  "Copyright (c) 1990-2008 Info-ZIP.  All rights reserved.",
+  "",
+  "For the purposes of this copyright and license, \"Info-ZIP\" is defined as",
+***************
+*** 133,138 ****
+--- 134,144 ----
+  "    4. Info-ZIP retains the right to use the names \"Info-ZIP,\" \"Zip,\" \"UnZip,\"",
+  "       \"UnZipSFX,\" \"WiZ,\" \"Pocket UnZip,\" \"Pocket Zip,\" and \"MacZip\" for its",
+  "       own source and binary releases."
++ #else
++ "Copyright (c) 1990-2008 Info-ZIP.  All rights reserved.",
++ "",
++ "Check license at ftp://ftp.info-zip.org/pub/infozip/license.html",
++ #endif
+  };
+  #endif /* DEFCPYRT */
+  #endif /* !WINDLL && !IZ_VERSION_SYMBOLS_ONLY */
+diff -crB orig/unix/unix.c src/unix/unix.c
+*** orig/unix/unix.c	2008-06-19 00:26:18.000000000 +0200
+--- src/unix/unix.c	2013-03-15 21:09:29.195251000 +0100
+***************
+*** 8,14 ****
+--- 8,18 ----
+    If, for some reason, all these files are missing, the Info-ZIP license
+    also may be found at:  ftp://ftp.info-zip.org/pub/infozip/license.html
+  */
++ #ifndef __BIONIC__
+  #include "zip.h"
++ #else
++ #include "../zip.h"
++ #endif
+  
+  #ifndef UTIL    /* the companion #endif is a bit of ways down ... */
+  
+diff -crB orig/zip.c src/zip.c
+*** orig/zip.c	2008-07-05 12:34:06.000000000 +0200
+--- src/zip.c	2013-03-15 21:49:16.251325000 +0100
+***************
+*** 588,594 ****
+--- 588,596 ----
+  #  else
+  "  -h   show this help               -n   don't compress these suffixes"
+  #  endif
++ #ifndef __BIONIC__
+  ," -h2  show more help",
++ #endif
+  "  Macintosh specific:",
+  "  -jj  record Fullpath (+ Volname)  -N store finder-comments as comments",
+  "  -df  zip only datafork of a file  -S include finder invisible/system files"
+***************
+*** 667,674 ****
+--- 669,678 ----
+  #ifdef RISCOS
+  ,"  -h2  show more help               -I   don't scan thru Image files"
+  #else
++ #ifndef __BIONIC__
+  ,"  -h2  show more help"
+  #endif
++ #endif
+  #endif /* ?MACOS */
+  #ifdef VMS
+  ,"  (Must quote upper-case options, like \"-V\", unless SET PROC/PARSE=EXTEND)"
+***************
+*** 1028,1034 ****
+  
+    for (i = 0; i < sizeof(text)/sizeof(char *); i++)
+    {
+!     printf(text[i]);
+      putchar('\n');
+    }
+  #ifdef DOS
+--- 1032,1038 ----
+  
+    for (i = 0; i < sizeof(text)/sizeof(char *); i++)
+    {
+!     printf("%s", text[i]);
+      putchar('\n');
+    }
+  #ifdef DOS
+***************
+*** 1225,1231 ****
+              CR_MAJORVER, CR_MINORVER, CR_BETA_VER, CR_VERSION_DATE);
+    for (i = 0; i < sizeof(cryptnote)/sizeof(char *); i++)
+    {
+!     printf(cryptnote[i]);
+      putchar('\n');
+    }
+    ++i;  /* crypt support means there IS at least one compilation option */
+--- 1229,1235 ----
+              CR_MAJORVER, CR_MINORVER, CR_BETA_VER, CR_VERSION_DATE);
+    for (i = 0; i < sizeof(cryptnote)/sizeof(char *); i++)
+    {
+!     printf("%s", cryptnote[i]);
+      putchar('\n');
+    }
+    ++i;  /* crypt support means there IS at least one compilation option */
+***************
+*** 2010,2016 ****
+--- 2014,2022 ----
+      {"h",  "help",        o_NO_VALUE,       o_NOT_NEGATABLE, 'h',  "help"},
+      {"H",  "",            o_NO_VALUE,       o_NOT_NEGATABLE, 'h',  "help"},
+      {"?",  "",            o_NO_VALUE,       o_NOT_NEGATABLE, 'h',  "help"},
++ #ifndef __BIONIC__
+      {"h2", "more-help",   o_NO_VALUE,       o_NOT_NEGATABLE, o_h2, "extended help"},
++ #endif
+  #endif /* !WINDLL */
+      {"i",  "include",     o_VALUE_LIST,     o_NOT_NEGATABLE, 'i',  "include only files matching patterns"},
+  #if defined(VMS) || defined(WIN32)
+***************
+*** 2829,2837 ****
+--- 2835,2845 ----
+  #endif /* !WINDLL */
+  
+  #ifndef WINDLL
++ #ifndef __BIONIC__
+          case o_h2:  /* Extended Help */
+            help_extended();
+            RETURN(finish(ZE_OK));
++ #endif
+  #endif /* !WINDLL */
+  
+          /* -i is with -x */
