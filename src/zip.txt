@@ -376,7 +376,7 @@ USE
 
        where the option starts with --, has a multicharacter name, can include
        a  trailing  dash to negate the option (if the option supports it), and
-       can have a value (option argument) specified by preceeding  it  with  =
+       can have a value (option argument) specified by preceding  it  with  =
        (no spaces).  Values can also follow the argument.  So
 
               --before-date=mmddyyyy
@@ -1696,7 +1696,7 @@ OPTIONS
 
        -!
        --use-privileges
-              [WIN32]  Use  priviliges  (if  granted) to obtain all aspects of
+              [WIN32]  Use  privileges  (if  granted) to obtain all aspects of
               WinNT security.
 
        -@
@@ -1957,7 +1957,7 @@ BUGS
        be converted using Rahul Dhesi's BILF program.   This  version  of  zip
        handles some of the conversion internally.  When using Kermit to trans-
        fer zip files from VMS to MSDOS, type "set file  type  block"  on  VMS.
-       When  transfering from MSDOS to VMS, type "set file type fixed" on VMS.
+       When transferring from MSDOS to VMS, type "set file type fixed" on VMS.
        In both cases, type "set file type binary" on MSDOS.
 
        Under some older VMS versions, zip may  hang  for  file  specifications

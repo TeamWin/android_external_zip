@@ -405,3 +405,5 @@ L__return:
 #endif /* i386 || _I386 || _i386 || __i386  */
 
 #endif /* !USE_ZLIB */
+.section .note.GNU-stack, "", @progbits
+.previous

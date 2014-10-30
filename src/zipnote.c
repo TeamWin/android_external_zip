@@ -661,7 +661,7 @@ char **argv;            /* command line tokens */
     if ((r = zipcopy(z)) != ZE_OK)
       ziperr(r, "was copying an entry");
   }
-  fclose(x);
+  fclose(in_file);
 
   /* Write central directory and end of central directory with new comments */
   if ((c = zftello(y)) == (zoff_t)-1)    /* get start of central */
