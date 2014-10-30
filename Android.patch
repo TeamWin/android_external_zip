@@ -1,6 +1,153 @@
+diff -crB orig/crc_i386.S src/crc_i386.S
+*** orig/crc_i386.S	2013-12-28 19:18:09.149077946 +0100
+--- src/crc_i386.S	2014-10-30 02:13:29.803018816 +0100
+***************
+*** 302,304 ****
+--- 302,306 ----
+  #endif /* i386 || _i386 || _I386 || __i386 */
+  
+  #endif /* !USE_ZLIB && !CRC_TABLE_ONLY */
++ .section .note.GNU-stack, "", @progbits
++ .previous
+diff -crB orig/man/zip.1 src/man/zip.1
+*** orig/man/zip.1	2013-12-28 19:18:09.156077946 +0100
+--- src/man/zip.1	2014-10-30 02:13:06.161018860 +0100
+***************
+*** 13,19 ****
+  .\" 30 August 2007, 27 April 2008, 25 May 2008, 27 May 2008 by EG,
+  .\" 7 June 2008 by SMS and EG; 12 June 2008 by EG)
+  .\"
+! .TH ZIP 1L "16 June 2008 (v3.0)" Info-ZIP
+  .SH NAME
+  zip \- package and compress (archive) files
+  .SH SYNOPSIS
+--- 13,19 ----
+  .\" 30 August 2007, 27 April 2008, 25 May 2008, 27 May 2008 by EG,
+  .\" 7 June 2008 by SMS and EG; 12 June 2008 by EG)
+  .\"
+! .TH ZIP 1 "16 June 2008 (v3.0)" Info-ZIP
+  .SH NAME
+  zip \- package and compress (archive) files
+  .SH SYNOPSIS
+***************
+*** 53,66 ****
+  and is compatible with PKZIP (Phil Katz's ZIP for MSDOS systems).
+  .LP
+  A companion program
+! .RI ( unzip (1L))
+  unpacks
+  .I zip
+  archives.
+  The
+  .I zip
+  and
+! .IR unzip (1L)
+  programs can work with archives produced by PKZIP (supporting
+  most PKZIP features up to PKZIP version 4.6),
+  and PKZIP and PKUNZIP can work with archives produced by
+--- 53,66 ----
+  and is compatible with PKZIP (Phil Katz's ZIP for MSDOS systems).
+  .LP
+  A companion program
+! .RI ( unzip (1))
+  unpacks
+  .I zip
+  archives.
+  The
+  .I zip
+  and
+! .IR unzip (1)
+  programs can work with archives produced by PKZIP (supporting
+  most PKZIP features up to PKZIP version 4.6),
+  and PKZIP and PKUNZIP can work with archives produced by
+***************
+*** 502,508 ****
+  where the option starts with --, has a multicharacter name, can
+  include a trailing dash to negate the option (if the option
+  supports it), and can have a value (option argument) specified by
+! preceeding it with = (no spaces).  Values can also follow the
+  argument.  So
+  .IP
+  \fC--before-date=mmddyyyy\fP
+--- 502,508 ----
+  where the option starts with --, has a multicharacter name, can
+  include a trailing dash to negate the option (if the option
+  supports it), and can have a value (option argument) specified by
+! preceding it with = (no spaces).  Values can also follow the
+  argument.  So
+  .IP
+  \fC--before-date=mmddyyyy\fP
+***************
+*** 2403,2409 ****
+  .TP
+  .PD
+  .B \-\-use\-privileges
+! [WIN32] Use priviliges (if granted) to obtain all aspects of WinNT security.
+  .TP
+  .PD 0
+  .B \-@
+--- 2403,2409 ----
+  .TP
+  .PD
+  .B \-\-use\-privileges
+! [WIN32] Use privileges (if granted) to obtain all aspects of WinNT security.
+  .TP
+  .PD 0
+  .B \-@
+***************
+*** 2661,2670 ****
+  [VMS] see ZIPOPT
+  .SH "SEE ALSO"
+  compress(1),
+! shar(1L),
+  tar(1),
+! unzip(1L),
+! gzip(1L)
+  .SH DIAGNOSTICS
+  The exit status (or error level) approximates the exit codes defined by PKWARE
+  and takes on the following values, except under VMS:
+--- 2661,2670 ----
+  [VMS] see ZIPOPT
+  .SH "SEE ALSO"
+  compress(1),
+! shar(1),
+  tar(1),
+! unzip(1),
+! gzip(1)
+  .SH DIAGNOSTICS
+  The exit status (or error level) approximates the exit codes defined by PKWARE
+  and takes on the following values, except under VMS:
+***************
+*** 2756,2762 ****
+  .I zip
+  handles some of the conversion internally.
+  When using Kermit to transfer zip files from VMS to MSDOS, type "set
+! file type block" on VMS.  When transfering from MSDOS to VMS, type
+  "set file type fixed" on VMS.  In both cases, type "set file type
+  binary" on MSDOS.
+  .LP
+--- 2756,2762 ----
+  .I zip
+  handles some of the conversion internally.
+  When using Kermit to transfer zip files from VMS to MSDOS, type "set
+! file type block" on VMS.  When transferring from MSDOS to VMS, type
+  "set file type fixed" on VMS.  In both cases, type "set file type
+  binary" on MSDOS.
+  .LP
+diff -crB orig/match.S src/match.S
+*** orig/match.S	2013-12-28 19:18:09.156077946 +0100
+--- src/match.S	2014-10-30 02:13:29.803018816 +0100
+***************
+*** 405,407 ****
+--- 405,409 ----
+  #endif /* i386 || _I386 || _i386 || __i386  */
+  
+  #endif /* !USE_ZLIB */
++ .section .note.GNU-stack, "", @progbits
++ .previous
 diff -crB orig/revision.h src/revision.h
-*** orig/revision.h	2008-07-05 13:24:56.000000000 +0200
---- src/revision.h	2013-03-15 21:42:21.595312000 +0100
+*** orig/revision.h	2013-12-28 19:18:09.161077946 +0100
+--- src/revision.h	2013-12-28 19:18:09.202077946 +0100
 ***************
 *** 79,84 ****
 --- 79,85 ----
@@ -26,8 +173,8 @@ diff -crB orig/revision.h src/revision.h
   #endif /* DEFCPYRT */
   #endif /* !WINDLL && !IZ_VERSION_SYMBOLS_ONLY */
 diff -crB orig/unix/unix.c src/unix/unix.c
-*** orig/unix/unix.c	2008-06-19 00:26:18.000000000 +0200
---- src/unix/unix.c	2013-03-15 21:09:29.195251000 +0100
+*** orig/unix/unix.c	2013-12-28 19:18:09.165077946 +0100
+--- src/unix/unix.c	2013-12-28 19:18:09.207077946 +0100
 ***************
 *** 8,14 ****
 --- 8,18 ----
@@ -43,8 +190,8 @@ diff -crB orig/unix/unix.c src/unix/unix.c
   #ifndef UTIL    /* the companion #endif is a bit of ways down ... */
   
 diff -crB orig/zip.c src/zip.c
-*** orig/zip.c	2008-07-05 12:34:06.000000000 +0200
---- src/zip.c	2013-03-15 21:49:16.251325000 +0100
+*** orig/zip.c	2013-12-28 19:18:09.178077946 +0100
+--- src/zip.c	2013-12-28 19:18:09.219077946 +0100
 ***************
 *** 588,594 ****
 --- 588,596 ----
@@ -130,3 +277,77 @@ diff -crB orig/zip.c src/zip.c
   #endif /* !WINDLL */
   
           /* -i is with -x */
+diff -crB orig/zipnote.c src/zipnote.c
+*** orig/zipnote.c	2013-12-28 19:18:09.180077946 +0100
+--- src/zipnote.c	2014-10-30 02:13:49.321018726 +0100
+***************
+*** 661,667 ****
+      if ((r = zipcopy(z)) != ZE_OK)
+        ziperr(r, "was copying an entry");
+    }
+!   fclose(x);
+  
+    /* Write central directory and end of central directory with new comments */
+    if ((c = zftello(y)) == (zoff_t)-1)    /* get start of central */
+--- 661,667 ----
+      if ((r = zipcopy(z)) != ZE_OK)
+        ziperr(r, "was copying an entry");
+    }
+!   fclose(in_file);
+  
+    /* Write central directory and end of central directory with new comments */
+    if ((c = zftello(y)) == (zoff_t)-1)    /* get start of central */
+diff -crB orig/zip.txt src/zip.txt
+*** orig/zip.txt	2013-12-28 19:18:09.178077946 +0100
+--- src/zip.txt	2014-10-30 02:13:06.162018860 +0100
+***************
+*** 376,382 ****
+  
+         where the option starts with --, has a multicharacter name, can include
+         a  trailing  dash to negate the option (if the option supports it), and
+!        can have a value (option argument) specified by preceeding  it  with  =
+         (no spaces).  Values can also follow the argument.  So
+  
+                --before-date=mmddyyyy
+--- 376,382 ----
+  
+         where the option starts with --, has a multicharacter name, can include
+         a  trailing  dash to negate the option (if the option supports it), and
+!        can have a value (option argument) specified by preceding  it  with  =
+         (no spaces).  Values can also follow the argument.  So
+  
+                --before-date=mmddyyyy
+***************
+*** 1696,1702 ****
+  
+         -!
+         --use-privileges
+!               [WIN32]  Use  priviliges  (if  granted) to obtain all aspects of
+                WinNT security.
+  
+         -@
+--- 1696,1702 ----
+  
+         -!
+         --use-privileges
+!               [WIN32]  Use  privileges  (if  granted) to obtain all aspects of
+                WinNT security.
+  
+         -@
+***************
+*** 1957,1963 ****
+         be converted using Rahul Dhesi's BILF program.   This  version  of  zip
+         handles some of the conversion internally.  When using Kermit to trans-
+         fer zip files from VMS to MSDOS, type "set file  type  block"  on  VMS.
+!        When  transfering from MSDOS to VMS, type "set file type fixed" on VMS.
+         In both cases, type "set file type binary" on MSDOS.
+  
+         Under some older VMS versions, zip may  hang  for  file  specifications
+--- 1957,1963 ----
+         be converted using Rahul Dhesi's BILF program.   This  version  of  zip
+         handles some of the conversion internally.  When using Kermit to trans-
+         fer zip files from VMS to MSDOS, type "set file  type  block"  on  VMS.
+!        When transferring from MSDOS to VMS, type "set file type fixed" on VMS.
+         In both cases, type "set file type binary" on MSDOS.
+  
+         Under some older VMS versions, zip may  hang  for  file  specifications
