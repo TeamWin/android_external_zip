@@ -1023,15 +1023,8 @@ void version_local()
 #endif /* SGI */
 
 
-/* Define the compile date string */
-#ifdef __DATE__
-#  define COMPILE_DATE " on " __DATE__
-#else
-#  define COMPILE_DATE ""
-#endif
-
-    printf("Compiled with %s for Unix (%s)%s.\n\n",
-           COMPILER_NAME, OS_NAME, COMPILE_DATE);
+    printf("Compiled with %s for Unix (%s).\n\n",
+           COMPILER_NAME, OS_NAME);
 
 } /* end function version_local() */
 
