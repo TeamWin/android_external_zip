@@ -10,6 +10,8 @@ LOCAL_C_INCLUDES := src src/unix
 LOCAL_CFLAGS := -O2 -Wall -DUNIX -D__BIONIC__ -DNO_LARGE_FILE_SUPPORT \
                 -DHAVE_DIRENT_H -DHAVE_TERMIOS_H
 
+LOCAL_CFLAGS += -Wno-error
+
 LOCAL_ARM_MODE := arm
 
 LOCAL_MODULE := zip
