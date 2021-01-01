@@ -16,6 +16,14 @@ LOCAL_ARM_MODE := arm
 
 LOCAL_MODULE := zip
 LOCAL_MODULE_PATH := $(TARGET_RECOVERY_ROOT_OUT)/sbin
-LOCAL_LDFLAGS += -Wl,-dynamic-linker,/sbin/linker64
+ifneq ($(TARGET_ARCH), arm64)
+    ifneq ($(TARGET_ARCH), x86_64)
+        LOCAL_LDFLAGS += -Wl,-dynamic-linker,/sbin/linker
+    else
+        LOCAL_LDFLAGS += -Wl,-dynamic-linker,/sbin/linker64
+    endif
+else
+    LOCAL_LDFLAGS += -Wl,-dynamic-linker,/sbin/linker64
+endif
 include $(BUILD_EXECUTABLE)
 
