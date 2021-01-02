@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "5754bdf4_b011ceb2",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 3
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 32
+      },
+      "writtenOn": "2021-01-02T02:46:12Z",
+      "side": 1,
+      "message": "Ready to merge. Only applies to 7.1 tree, so no other conflicts.",
+      "revId": "16c6e9c8b25199041f45647129ac7c8e3df82451",
+      "serverId": "9c1c7d72-6534-4d44-b0ea-39f63e804833"
+    }
+  ]
+}
